@@ -1,49 +1,28 @@
-import React, { useState } from 'react';
-import TransactionPage from './TransactionPage';
-import AddressPage from './AddressPage';
-import TransferPage from './TransferPage';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TransactionPage from "./pages/TransactionPage";
+import AddressPage from "./pages/AddressPage";
+import Layout from "./pages/Layout";
+import TransferPage from "./pages/TransferPage"
 
-function App() {
-  const [activeTab, setActiveTab] = useState('Transaction');
-  const [selectedAddress, setSelectedAddress] = useState(null);
-  const [userAddress, setuserAddress] = useState("xyz");
-
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-    setSelectedAddress(null); // Reset selected address when switching tabs
+export default function App() {
+  const user = {
+    address: 'xxx',
+    amount: 10,
   };
-
-  const handleAddressClick = (address) => {
-    setActiveTab('Transfer'); // Set the active tab to "Transfer"
-    setSelectedAddress(address); // Store the selected address
-  };
-
+  
   return (
-    <div>
-      <header>
-        <nav>
-          <ul>
-            <li onClick={() => handleTabClick('Transaction')} className={activeTab === 'Transaction' ? 'active' : ''}>
-              Transaction
-            </li>
-            <li onClick={() => handleTabClick('Address')} className={activeTab === 'Address' ? 'active' : ''}>
-              Address
-            </li>
-            <li onClick={() => handleTabClick('Wallet')} className={activeTab === 'Wallet' ? 'active' : ''}>
-              Wallet
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        {activeTab === 'Transaction' && <TransactionPage />}
-        {activeTab === 'Address' && <AddressPage onTransferClick={handleAddressClick} />}
-        {activeTab === 'Transfer' && <TransferPage mainuser={userAddress} selectedAddress={selectedAddress} />}
-        {/* Add handling for other tabs (Wallet) here */}
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<TransactionPage />} />
+          <Route path="AddressPage" element={<AddressPage />} />
+          <Route path="/address/:address" element={<TransferPage user={user} />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
