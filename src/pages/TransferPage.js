@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import updateTransactions from './TransactionPage'
 
 
-const TransferPage = ({ user }) => {
+const TransferPage = ({ user, updateTransactionsHistory} ) => {
     const { address } = useParams();
     const [inputValue, setInputValue] = useState('');
     const [showReceipt, setShowReceipt] = useState(false);
@@ -14,6 +15,16 @@ const TransferPage = ({ user }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim() !== '') {     //Check whether the input is empty!
+            const newTransaction = {
+                TransactionHash: 'test hash', // Generate a unique hash for the new transaction
+                Status: 'Success', // Update this based on the actual result
+                Timestamp: new Date().toLocaleString(), // Current timestamp
+                From: user.address,
+                To: address,
+                Value: inputValue,
+                GasUse: '21000', // Update this based on the actual gas usage
+              };
+            updateTransactionsHistory(newTransaction);
             setShowReceipt(true);
         } else{
             alert("Please input a value!");

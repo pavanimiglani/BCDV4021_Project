@@ -1,13 +1,8 @@
 // TransactionPage.js
-import React from 'react';
+import React, { useState } from 'react';
 
-const TransactionsHistory = [
-  { TransactionHash: 'xxx', Status: 'xxx', Timestamp: 'xxx', From: '', To: 'zyx', Value: '10', GasUse: '21000' },
-  { TransactionHash: 'xxx', Status: 'xxx', Timestamp: 'xxx', From: '', To: 'mwm', Value: '20', GasUse: '20000' },
-  // Add more transaction data as needed
-];
 
-const TransactionPage = () => {
+const TransactionPage = ({TransactionsHistory}) => {
   return (
     <div>
       <h2>Transaction History</h2>
