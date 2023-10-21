@@ -5,7 +5,20 @@ import TransactionPage from "./pages/TransactionPage";
 import AddressPage from "./pages/AddressPage";
 import Layout from "./pages/Layout";
 import TransferPage from "./pages/TransferPage"
-import WalletPage from "./pages/WalletPage"
+import WalletPage from "./pages/WalletPage" 
+
+const WalletDetails = ({ walletData }) => {
+  return (
+    <div className="wallet-details">
+      <h2>Wallet Details</h2>
+      <p>Account Name: {walletData.accountName}</p>
+      <p>Balance: {walletData.balance}</p>
+      <p>Transactions: {walletData.transactions}</p>
+    </div>
+  );
+};
+
+export default WalletDetails;
 
 export default function App() {
   const user = {
