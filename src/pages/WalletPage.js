@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const WalletPage = () => {
-    return <h1>Test</h1>
-}
+const WalletDetails = ({ walletData }) => {
+  return (
+    <div className="wallet-details">
+      <h2>Wallet Details</h2>
+      <p>Account Name: {walletData.accountName}</p>
+      <p>Balance: {walletData.balance}</p>
+      <p>Transactions: {walletData.transactions}</p>
+    </div>
+  );
+};
 
-export default WalletPage;
+export default WalletDetails;
