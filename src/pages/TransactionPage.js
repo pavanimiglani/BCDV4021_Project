@@ -1,27 +1,27 @@
 // TransactionPage.js
 import React, { useState } from 'react';
+import './CSS/TransactionPage.css';
 
 
 const TransactionPage = ({TransactionsHistory}) => {
   return (
-    <div>
+    <div className="transaction-history"> {/* Apply the 'transaction-history' class */}
       <h2>Transaction History</h2>
-      <ul>
+      <ul className="transaction-list"> {/* Apply the 'transaction-list' class */}
         {TransactionsHistory.map((transaction, index) => (
           <li key={index}>
-            TransactionHash: {transaction.TransactionHash}<br />
-            Status: {transaction.Status}<br />
-            Timestamp: {transaction.Timestamp}<br />
-            From: {transaction.From}<br />
-            To: {transaction.To}<br />
-            Value: {transaction.Value}<br />
-            Gas Use: {transaction.GasUse}<br />
-            <br />
+            <p><strong>TransactionHash:</strong> {transaction.TransactionHash}</p>
+            <p><strong>Status:</strong> {transaction.Status}</p>
+            <p><strong>Timestamp:</strong> {transaction.Timestamp}</p>
+            <p><strong>From:</strong> {transaction.From}</p>
+            <p><strong>To:</strong> {transaction.To}</p>
+            <p><strong>Value:</strong> {transaction.Value}</p>
+            <p><strong>Gas Use:</strong> {transaction.GasUse}</p>
           </li>
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 export default TransactionPage;
