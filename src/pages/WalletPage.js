@@ -1,4 +1,5 @@
 import React from 'react';
+import './WalletDetails.css'; 
 
 const WalletDetails = ({ walletData }) => {
   return (
