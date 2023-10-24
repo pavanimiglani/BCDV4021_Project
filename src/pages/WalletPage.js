@@ -1,4 +1,5 @@
 import React from 'react';
+import './WalletDetails.css'; 
 
 const WalletDetails = ({ walletData }) => {
   return (
@@ -11,4 +12,6 @@ const WalletDetails = ({ walletData }) => {
   );
 };
 
-export default WalletDetails;
+export default WalletDetails; 
+
+
