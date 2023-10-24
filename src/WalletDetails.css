@@ -1,0 +1,21 @@
+.wallet-details {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+  
+  .wallet-details h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .wallet-details p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
