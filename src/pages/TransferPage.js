@@ -5,7 +5,7 @@ import Base64 from 'crypto-js/enc-base64';
 import "./CSS/TransferPage.css"
 
 
-const TransferPage = ({ user, updateTransactionsHistory} ) => {
+const TransferPage = ({ user, updateTransactionsHistory, updateWalletAmount, RemainingValue} ) => {
     const { address } = useParams();
     const [inputValue, setInputValue] = useState('');
     const [showReceipt, setShowReceipt] = useState(false);
@@ -19,7 +19,7 @@ const TransferPage = ({ user, updateTransactionsHistory} ) => {
         const hash = Base64.stringify(sha256(user.address + address+inputValue));
         setBlockHash(Base64.stringify(sha256(inputValue)));
         if (inputValue.trim() !== '') {     //Check whether the input is empty!
-            if(inputValue<=user.amount){
+            if(inputValue<=RemainingValue){
                 setBlockNumber(showBlockNumber+1);
                 setShowReceipt(true);
                 const newTransaction = {
@@ -32,6 +32,7 @@ const TransferPage = ({ user, updateTransactionsHistory} ) => {
                     GasUse: '21000', // Update this based on the actual gas usage
                 };        
                 updateTransactionsHistory(newTransaction);
+                updateWalletAmount(inputValue);
             }else{
                 setShowReceipt(false);
                 alert("Transfer Fail, not enough fund!")
